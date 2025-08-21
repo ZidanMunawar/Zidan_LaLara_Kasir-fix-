@@ -43,21 +43,6 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        // User::create([
-        //     'nama_lengkap' => 'Yaqin',
-        //     'email' =>'admin1@gmail.com',
-        //     'password' => Hash::make('admin'),
-        //     'hak_akses' => 'admin',
-        // ]);
-        // input data ke table user
-        // DB::table('users')->insert([
-        //     'nama_lengkap' => 'Muhammad Yaqin',
-        //     'email' =>'myaqin@gmail.com',
-        //     'password' => Hash::make('myadmin'),
-        //     'hak_akses' => 'admin',
-        //     //'create_at' => carbon::now(),
-        //     //'update_at' => carbon::now(),
 
-        // ]);
     }
 }

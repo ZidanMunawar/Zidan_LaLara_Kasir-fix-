@@ -22,20 +22,26 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
         // cesk inputan benar/tersedia
+        // cek username / email atau password benar tersedia
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            //ambil data hak akses dari users yang login
 
+            // ambil data hak akses yang sedang login
             $hak_akses = Auth::user()->hak_akses;
+
             if ($hak_akses == 'admin') {
-                echo "<h1>Selamat datang Admin</h1>";
-            } elseif ($hak_akses == 'kasir') {
-                echo "<h1>Selamat datang Kasir</h1>";
+                return redirect()->intended('dashboard');
+            } else if ($hak_akses == 'kasir') {
+                return redirect()->intended('dashboard');
+            } else {
+                return redirect()->route('login')
+                    ->withErrors(['akses' => 'Hak akses tidak terdaftar']);
             }
         } else {
-
-            echo "<h1>Gagal login</h1>";
+            return redirect()->route('login')
+                ->withErrors(['login' => 'Email atau password salah']);
         }
+
         // dd($request);
         // die;
     }
