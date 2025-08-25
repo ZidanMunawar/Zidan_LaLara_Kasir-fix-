@@ -1,14 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-bs-theme="blue-theme">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | Kasir</title>
+  <!--favicon-->
+  <link rel="icon" href="{{ asset('assets/images/favicon-32x32.png') }}" type="image/png">
+  <!-- loader-->
+  <link href="{{ asset('assets/css/pace.min.css') }}" rel="stylesheet">
+  <script src="{{ asset('assets/js/pace.min.js') }}"></script>
+
+  <!--plugins-->
+  <link href="{{ asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/metismenu/metisMenu.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/metismenu/mm-vertical.css') }}">
+  <!--bootstrap css-->
+  <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+  <!--main css-->
+  <link href="{{ asset('assets/css/bootstrap-extended.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/dark-theme.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/blue-theme.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/semi-dark.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/bordered-theme.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
+  <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color : #f8f7f3;
+      background-color: #f8f7f3;
     }
     .login-container {
       max-width: 400px;
@@ -19,44 +41,113 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     .d-grid button {
-        background-color : black;
-        color : white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
     .d-grid button:hover {
-        background-color: grey;
-
+      background-color: grey;
     }
     .footer {
-        text-align: center;
-        margin-top: 15px;
-        font-size: 13px;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 13px;
     }
   </style>
 </head>
+
 <body>
-<div class="login-container">
-    <h2 class="text-center mb-4">Login</h2 >
-    <form method="POST" action="/login">
-      @csrf
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email" required>
+
+  <!--authentication-->
+  <div class="section-authentication-cover">
+    <div class="">
+      <div class="row g-0">
+
+        <div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex border-end bg-white">
+          <div class="card rounded-0 mb-0 border-0 shadow-none bg-transparent bg-none">
+            <div class="card-body">
+              <img src="{{ asset('assets/images/cashier.gif') }}" class="img-fluid auth-img-cover-login" width="500" alt="">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center border-top border-4 border-primary border-gradient-1">
+          <div class="card rounded-0 m-3 mb-0 border-0 shadow-none bg-none">
+            <div class="card-body p-sm-5">
+              <img src="{{ asset('assets/images/icons8-cashier-120.png') }}" class="mb-4" width="60" alt="">
+              <h4 class="fw-bold">Login</h4>
+              <p class="mb-0">Masukan kredensial untuk login ke akun Anda</p>
+
+              <div class="form-body mt-4">
+                <form method="POST" action="/login" class="row g-3">
+                  @csrf
+                  <div class="col-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukan Email" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group" id="show_hide_password">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password" required>
+                      <a href="javascript:;" class="input-group-text bg-transparent"><i class="bi bi-eye-slash-fill"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 text-end">
+                    <a href="#">Lupa Password ?</a>
+                  </div>
+                  <div class="col-12">
+                    <div class="d-grid">
+                      <button type="submit" class="btn btn-grd-primary">Masuk</button>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="text-start">
+                      <p class="mb-0">Belum punya akun? <a href="#">Daftar</a></p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password" required>
-      </div>
-      <div class="d-grid">
-        <button type="submit" class="btn">Masuk</button>
-      </div>
-    </form>
-    <div class="footer">
-        Belum punya akun? <a href="#">Daftar</a>
+      <!--end row-->
     </div>
   </div>
+
+  <!--authentication-->
+
+  <!--plugins-->
+  <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+
+  <script>
+    $(document).ready(function () {
+      $("#show_hide_password a").on('click', function (event) {
+        event.preventDefault();
+        if ($('#show_hide_password input').attr("type") == "text") {
+          $('#show_hide_password input').attr('type', 'password');
+          $('#show_hide_password i').addClass("bi-eye-slash-fill");
+          $('#show_hide_password i').removeClass("bi-eye-fill");
+        } else if ($('#show_hide_password input').attr("type") == "password") {
+          $('#show_hide_password input').attr('type', 'text');
+          $('#show_hide_password i').removeClass("bi-eye-slash-fill");
+          $('#show_hide_password i').addClass("bi-eye-fill");
+        }
+      });
+    });
+  </script>
+
 </body>
+
 </html>

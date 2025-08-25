@@ -30,9 +30,9 @@ class LoginController extends Controller
             $hak_akses = Auth::user()->hak_akses;
 
             if ($hak_akses == 'admin') {
-                return redirect()->intended('dashboard');
+                return redirect()->route('admin.index');
             } else if ($hak_akses == 'kasir') {
-                return redirect()->intended('dashboard');
+                return redirect()->route('kasir.index');
             } else {
                 return redirect()->route('login')
                     ->withErrors(['akses' => 'Hak akses tidak terdaftar']);
@@ -45,7 +45,13 @@ class LoginController extends Controller
         // dd($request);
         // die;
     }
-
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/login');
+    }
     /**
      * Show the form for creating a new resource.
      */
